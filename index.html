@@ -13,8 +13,6 @@
             color: #ffffff;
             line-height: 1.6;
         }
-
-        /* Navigation */
         nav {
             background: rgba(12, 12, 12, 0.95);
             backdrop-filter: blur(12px);
@@ -30,15 +28,9 @@
         }
         .logo { font-size: 1.3rem; font-weight: 700; color: #ff4d4d; }
         .nav-links { display: flex; gap: 18px; }
-        .nav-links a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
+        .nav-links a { color: #ccc; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: #ff4d4d; }
 
-        /* Hero */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), 
@@ -51,25 +43,25 @@
             padding: 20px;
         }
         .hero-img {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #ff4d4d;
             margin-bottom: 20px;
-            box-shadow: 0 0 25px rgba(255,77,77,0.4);
+            box-shadow: 0 0 30px rgba(255,77,77,0.45);
         }
         .hero h1 {
-            font-size: 2.6rem;
-            margin-bottom: 8px;
+            font-size: 2.5rem;
+            margin-bottom: 6px;
             background: linear-gradient(90deg, #ff4d4d, #ff9966);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .hero .title {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #ff4d4d;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 500;
         }
         .hero p { color: #ddd; margin-bottom: 25px; }
@@ -85,11 +77,7 @@
         .btn:hover { background: #ff3333; transform: scale(1.05); }
 
         section { padding: 70px 20px; max-width: 1100px; margin: 0 auto; }
-        h2 {
-            font-size: 1.8rem;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        h2 { font-size: 1.8rem; text-align: center; margin-bottom: 30px; }
         h2::after {
             content: '';
             width: 60px;
@@ -99,7 +87,6 @@
             margin: 10px auto 0;
         }
 
-        /* About */
         .about-container {
             display: flex;
             flex-wrap: wrap;
@@ -108,7 +95,7 @@
             justify-content: center;
         }
         .about-photo {
-            width: 220px;
+            width: 230px;
             border-radius: 16px;
             border: 3px solid #333;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -123,13 +110,12 @@
             font-size: 1.05rem;
         }
 
-        /* Platforms */
         .platforms {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 10px;
         }
         .platform-btn {
             background: #1a1a1a;
@@ -146,7 +132,6 @@
             background: #222;
         }
 
-        /* Songs */
         .songs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -175,7 +160,6 @@
             font-size: 0.85rem;
         }
 
-        /* Footer */
         footer {
             background: #080808;
             text-align: center;
@@ -194,7 +178,6 @@
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
         <div class="logo">Binod Paudel</div>
         <div class="nav-links">
@@ -205,20 +188,18 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
-        <img src="photo1.jpg" alt="Binod Prasad Paudel" class="hero-img">
+        <img src="IMG_20260727_134322.jpg" alt="Binod Prasad Paudel" class="hero-img">
         <h1>Binod Prasad Paudel</h1>
         <div class="title">Lyricist</div>
         <p>Pokhara, Nepal</p>
         <a href="#songs" class="btn">गीतहरू सुन्नुहोस्</a>
     </section>
 
-    <!-- About -->
     <section id="about">
         <h2>मेरो परिचय</h2>
         <div class="about-container">
-            <img src="photo2.jpg" alt="Binod Prasad Paudel" class="about-photo">
+            <img src="grok_1785137606830.jpg" alt="Binod Prasad Paudel" class="about-photo">
             <div class="about-text">
                 नमस्कार! म <strong>बिनोद प्रसाद पौडेल</strong> हुँ। मेरो बसाइँ <strong>पोखरा, नेपाल</strong> हो।<br><br>
                 म विशेष गरी <strong>नेपाली तथा हिन्दी गीतहरूको शब्द रचना</strong> गर्छु। गीत-संगीत मेरो गहिरो रुचि हो।<br><br>
@@ -227,7 +208,6 @@
         </div>
     </section>
 
-    <!-- Platforms -->
     <section id="platforms">
         <h2>सुन्न मिल्ने प्लेटफर्महरू</h2>
         <div class="platforms">
@@ -236,15 +216,12 @@
             <a href="https://music.youtube.com/@binodpaudelmusic" class="platform-btn" target="_blank">YouTube Music</a>
             <a href="https://soundcloud.com/binod-paudel-935015872" class="platform-btn" target="_blank">SoundCloud</a>
             <a href="https://www.deezer.com/artist/395960661" class="platform-btn" target="_blank">Deezer</a>
-            <a href="https://www.jiosaavn.com/artist/binod-prasad-paudel" class="platform-btn" target="_blank">JioSaavn</a>
             <a href="https://www.youtube.com/@Binodpaudelmusic" class="platform-btn" target="_blank">YouTube</a>
             <a href="https://www.instagram.com/binodpaudelmusic" class="platform-btn" target="_blank">Instagram</a>
             <a href="https://www.tiktok.com/@binodprasadpaudelmusic" class="platform-btn" target="_blank">TikTok</a>
-            <a href="https://www.facebook.com" class="platform-btn" target="_blank">Facebook</a>
         </div>
     </section>
 
-    <!-- Songs -->
     <section id="songs">
         <h2>मेरा गीतहरू</h2>
         <div class="songs-grid">
@@ -311,7 +288,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>© 2026 Binod Prasad Paudel • Lyricist</p>
         <p style="margin-top: 8px;">Pokhara, Nepal • All Rights Reserved</p>
