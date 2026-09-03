@@ -3,23 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binod Paudel Music | Official Website</title>
+    <title>Binod Prasad Paudel | Official Music Website</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
             background: #0f0f0f;
             color: #ffffff;
             line-height: 1.6;
         }
-
-        /* Navigation */
         nav {
             background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(10px);
@@ -33,34 +26,15 @@
             align-items: center;
             border-bottom: 1px solid #222;
         }
+        .logo { font-size: 1.3rem; font-weight: 700; color: #ff4d4d; }
+        .nav-links { display: flex; gap: 18px; }
+        .nav-links a { color: #ccc; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: #ff4d4d; }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #ff4d4d;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #ff4d4d;
-        }
-
-        /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), 
+                        url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1400') center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -68,178 +42,113 @@
             text-align: center;
             padding: 20px;
         }
-
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 2.8rem;
+            margin-bottom: 12px;
             background: linear-gradient(90deg, #ff4d4d, #ff9966);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #ddd;
-            margin-bottom: 30px;
-        }
-
+        .hero p { font-size: 1.15rem; color: #ddd; margin-bottom: 25px; }
         .btn {
             background: #ff4d4d;
             color: white;
-            padding: 12px 30px;
-            border: none;
+            padding: 13px 32px;
             border-radius: 30px;
             font-size: 1rem;
-            cursor: pointer;
             text-decoration: none;
             transition: 0.3s;
         }
+        .btn:hover { background: #ff3333; transform: scale(1.05); }
 
-        .btn:hover {
-            background: #ff3333;
-            transform: scale(1.05);
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-align: center;
-            position: relative;
-        }
-
+        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
+        h2 { font-size: 1.9rem; margin-bottom: 30px; text-align: center; }
         h2::after {
             content: '';
-            width: 60px;
-            height: 3px;
+            width: 60px; height: 3px;
             background: #ff4d4d;
             display: block;
-            margin: 10px auto 0;
-        }
-
-        /* About */
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            align-items: center;
+            margin: 12px auto 0;
         }
 
         .about-text {
             background: #1a1a1a;
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 16px;
             border: 1px solid #333;
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
 
-        /* Songs */
         .songs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 22px;
         }
-
         .song-card {
             background: #1a1a1a;
-            border-radius: 15px;
-            overflow: hidden;
+            border-radius: 14px;
+            padding: 22px;
             border: 1px solid #333;
             transition: 0.3s;
         }
-
         .song-card:hover {
             transform: translateY(-5px);
             border-color: #ff4d4d;
         }
-
-        .song-info {
-            padding: 20px;
+        .song-card h3 { color: #ff4d4d; margin-bottom: 8px; font-size: 1.1rem; }
+        .song-card p { color: #aaa; font-size: 0.9rem; margin-bottom: 12px; }
+        .song-card a {
+            display: inline-block;
+            background: #ff4d4d;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
         }
 
-        .song-info h3 {
-            margin-bottom: 8px;
-            color: #ff4d4d;
-        }
-
-        .song-info p {
-            color: #aaa;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        audio {
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        /* Albums */
         .albums-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
         }
-
         .album-card {
             background: #1a1a1a;
-            border-radius: 15px;
+            border-radius: 14px;
             padding: 20px;
             text-align: center;
             border: 1px solid #333;
         }
-
         .album-cover {
             width: 100%;
             aspect-ratio: 1;
             background: linear-gradient(135deg, #ff4d4d, #ff9966);
-            border-radius: 10px;
-            margin-bottom: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
         }
 
-        /* Lyrics */
-        .lyrics-box {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #333;
-            white-space: pre-line;
-            line-height: 1.8;
-            color: #ddd;
-        }
-
-        /* Footer */
         footer {
             background: #0a0a0a;
             text-align: center;
             padding: 30px 20px;
             border-top: 1px solid #222;
             color: #777;
+            font-size: 0.9rem;
         }
 
-        /* Mobile */
         @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .nav-links {
-                gap: 12px;
-                font-size: 0.85rem;
-            }
+            .hero h1 { font-size: 2.1rem; }
+            .nav-links { gap: 12px; font-size: 0.82rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
         <div class="logo">Binod Paudel</div>
         <div class="nav-links">
@@ -247,122 +156,127 @@
             <a href="#about">परिचय</a>
             <a href="#songs">गीतहरू</a>
             <a href="#albums">एल्बम</a>
-            <a href="#lyrics">लिरिक्स</a>
         </div>
     </nav>
 
-    <!-- Hero -->
     <section class="hero" id="home">
-        <h1>Binod Paudel Music</h1>
-        <p>Official Website • Singer • Musician</p>
+        <h1>Binod Prasad Paudel</h1>
+        <p>Lyricist • Singer • Musician<br>Pokhara, Nepal</p>
         <a href="#songs" class="btn">गीतहरू सुन्नुहोस्</a>
     </section>
 
-    <!-- About -->
     <section id="about">
         <h2>मेरो परिचय</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>
-                    नमस्कार! म <strong>बिनोद पौडेल</strong> हुँ। म एक नेपाली गायक तथा संगीतकार हुँ। 
-                    मेरो संगीतमा भावना, माया र जीवनका कथाहरू समेटिएका छन्।
-                    <br><br>
-                    म सानै उमेरदेखि संगीतप्रति आकर्षित थिएँ। अहिलेसम्म धेरै गीतहरू रिलिज गरिसकेको छु 
-                    र आगामी दिनमा अझ राम्रा गीतहरू लिएर आउने योजना छ।
-                    <br><br>
-                    तपाईंहरूको माया र सहयोग नै मेरो प्रेरणा हो। धन्यवाद!
-                </p>
-            </div>
+        <div class="about-text">
+            नमस्कार! म <strong>बिनोद प्रसाद पौडेल</strong> हुँ। मेरो बसाइँ <strong>पोखरा, नेपाल</strong> हो।<br><br>
+            म विशेष गरी <strong>नेपाली तथा हिन्दी गीतहरूको शब्द रचना</strong> गर्छु। गीत-संगीत मेरो गहिरो रुचि र लगनशीलता हो।<br><br>
+            मेरा रचना गरेका गीतहरू विश्वका विभिन्न म्युजिक प्लेटफर्महरूमा लाइभ छन्। तपाईंहरूको माया र साथ नै मेरो सबैभन्दा ठूलो प्रेरणा हो।
         </div>
     </section>
 
-    <!-- Songs -->
     <section id="songs">
         <h2>मेरा गीतहरू</h2>
         <div class="songs-grid">
 
             <div class="song-card">
-                <div class="song-info">
-                    <h3>गीतको नाम १</h3>
-                    <p>Album • 2024</p>
-                    <p>यहाँ गीतको छोटो विवरण लेख्नुहोस्।</p>
-                    <!-- तपाईंको गीतको लिङ्क हाल्नुहोस् -->
-                    <audio controls>
-                        <source src="your-song-1.mp3" type="audio/mpeg">
-                        तपाईंको ब्राउजरले अडियो समर्थन गर्दैन।
-                    </audio>
-                </div>
+                <h3>दाग</h3>
+                <p>Heart Touching Nepali Sad Song • 2026</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
             </div>
 
             <div class="song-card">
-                <div class="song-info">
-                    <h3>गीतको नाम २</h3>
-                    <p>Album • 2023</p>
-                    <p>यहाँ गीतको छोटो विवरण लेख्नुहोस्।</p>
-                    <audio controls>
-                        <source src="your-song-2.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
+                <h3>यो जिन्दगी</h3>
+                <p>Heart Touching Nepali Sad Song • 2026</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
             </div>
 
             <div class="song-card">
-                <div class="song-info">
-                    <h3>गीतको नाम ३</h3>
-                    <p>Single • 2024</p>
-                    <p>यहाँ गीतको छोटो विवरण लेख्नुहोस्।</p>
-                    <audio controls>
-                        <source src="your-song-3.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
+                <h3>Timi Nai Hau</h3>
+                <p>Love Song</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
+            </div>
+
+            <div class="song-card">
+                <h3>किन बोल्दैनौ तिमी?</h3>
+                <p>गीति गजल • Nepali Geeti Ghazal</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
+            </div>
+
+            <div class="song-card">
+                <h3>JUNELI RAAT</h3>
+                <p>Emotional Heart Touching Nepali Song</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
+            </div>
+
+            <div class="song-card">
+                <h3>चाहना</h3>
+                <p>Heart-touching Nepali Love Song</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
+            </div>
+
+            <div class="song-card">
+                <h3>सपना बिक्रिमा छ</h3>
+                <p>मुटु छुने भावनात्मक नेपाली गीत</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
+            </div>
+
+            <div class="song-card">
+                <h3>हरि नाम जपौ</h3>
+                <p>New Nepali Bhajan • 2026</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
+            </div>
+
+            <div class="song-card">
+                <h3>मुस्कान</h3>
+                <p>Heart Touching Hindi Song • 2026</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
+            </div>
+
+            <div class="song-card">
+                <h3>O Sanam</h3>
+                <p>Emotional Heart Touching Song</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
+            </div>
+
+            <div class="song-card">
+                <h3>आकाश खसेको देखे</h3>
+                <p>Emotional Heart Touching Song</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
+            </div>
+
+            <div class="song-card">
+                <h3>यो जिन्दगी २</h3>
+                <p>Emotional Heart Touching Song</p>
+                <a href="https://www.youtube.com/@binodpdl" target="_blank">YouTube मा सुन्नुहोस्</a>
             </div>
 
         </div>
     </section>
 
-    <!-- Albums -->
     <section id="albums">
-        <h2>एल्बमहरू</h2>
+        <h2>एल्बम / संग्रह</h2>
         <div class="albums-grid">
             <div class="album-card">
                 <div class="album-cover">🎵</div>
-                <h3>एल्बम नाम १</h3>
-                <p>२०२४</p>
+                <h3>नेपाली भावनात्मक गीतहरू</h3>
+                <p>२०२४ - २०२६</p>
             </div>
             <div class="album-card">
                 <div class="album-cover">🎶</div>
-                <h3>एल्बम नाम २</h3>
-                <p>२०२३</p>
+                <h3>हिन्दी रोमान्टिक गीतहरू</h3>
+                <p>२०२५ - २०२६</p>
             </div>
             <div class="album-card">
-                <div class="album-cover">🎤</div>
-                <h3>एल्बम नाम ३</h3>
-                <p>२०२२</p>
+                <div class="album-cover">🙏</div>
+                <h3>भजन संग्रह</h3>
+                <p>हरि नाम जपौ लगायत</p>
             </div>
         </div>
     </section>
 
-    <!-- Lyrics -->
-    <section id="lyrics">
-        <h2>लिरिक्स</h2>
-        <div class="lyrics-box">
-<strong>गीतको नाम - लिरिक्स</strong>
-
-पहिलो स्टान्जा यहाँ लेख्नुहोस्...
-दोश्रो लाइन...
-तेश्रो लाइन...
-
-कोरस:
-यहाँ कोरस लेख्नुहोस्
-यहाँ कोरस लेख्नुहोस्
-
-दोश्रो स्टान्जा...
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <p>© 2026 Binod Paudel Music. All Rights Reserved.</p>
-        <p style="margin-top: 10px;">Made with ❤️ in Nepal</p>
+        <p>© 2026 Binod Prasad Paudel Music. All Rights Reserved.</p>
+        <p style="margin-top: 8px;">Pokhara, Nepal • Made with ❤️</p>
     </footer>
 
 </body>
