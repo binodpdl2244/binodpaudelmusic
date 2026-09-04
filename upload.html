@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Upload Song | Binodpaudel Music</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0c0c0c;
+    color:white;
+    padding:25px 15px;
+}
+
+.container{
+    max-width:600px;
+    margin:30px auto;
+    background:#1a1a1a;
+    padding:25px;
+    border-radius:18px;
+    border:1px solid #333;
+}
+
+h1{
+    text-align:center;
+    color:#ff4d4d;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin:18px 0 7px;
+    color:#ddd;
+}
+
+input,textarea{
+    width:100%;
+    padding:13px;
+    border-radius:10px;
+    border:1px solid #444;
+    background:#111;
+    color:white;
+    font-size:15px;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+button{
+    width:100%;
+    margin-top:25px;
+    padding:14px;
+    border:0;
+    border-radius:30px;
+    background:#ff4d4d;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.preview{
+    width:100%;
+    max-height:300px;
+    object-fit:cover;
+    margin-top:15px;
+    border-radius:12px;
+    display:none;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#aaa;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎵 Upload New Song</h1>
+
+<label>गीतको नाम</label>
+<input type="text" id="songTitle" placeholder="जस्तै: Dil Mera">
+
+<label>गीतको विवरण</label>
+<input type="text" id="songDescription" placeholder="जस्तै: Emotional Hindi Song">
+
+<label>Cover / Thumbnail</label>
+<input type="file" id="cover" accept="image/*">
+
+<img id="preview" class="preview">
+
+<label>MP3 गीत</label>
+<input type="file" id="audio" accept="audio/*">
+
+<label>Lyrics</label>
+<textarea id="lyrics" placeholder="यहाँ गीतका शब्दहरू राख्नुहोस्..."></textarea>
+
+<button onclick="demoUpload()">Upload Song</button>
+
+<p id="message" style="text-align:center;margin-top:20px;"></p>
+
+<a class="back" href="index.html">← मुख्य वेबसाइटमा फर्कनुहोस्</a>
+
+</div>
+
+<script>
+
+const coverInput = document.getElementById("cover");
+const preview = document.getElementById("preview");
+
+coverInput.addEventListener("change", function(){
+
+    const file = this.files[0];
+
+    if(file){
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+    }
+
+});
+
+function demoUpload(){
+
+    const title = document.getElementById("songTitle").value;
+    const cover = document.getElementById("cover").files[0];
+    const audio = document.getElementById("audio").files[0];
+
+    if(!title || !cover || !audio){
+
+        document.getElementById("message").innerText =
+        "कृपया गीतको नाम, Cover Photo र MP3 छान्नुहोस्।";
+
+        return;
+    }
+
+    document.getElementById("message").innerText =
+    "✅ Demo सफल भयो! अब Supabase जोडेर वास्तविक Upload चलाउन सकिन्छ।";
+}
+
+</script>
+
+</body>
+</html>
