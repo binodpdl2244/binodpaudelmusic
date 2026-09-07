@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Upload Song | Binodpaudel Music</title>
 
 <style>
@@ -13,13 +12,13 @@ body{
     margin:0;
     font-family:Arial,sans-serif;
     background:#0c0c0c;
-    color:white;
-    padding:25px 15px;
+    color:#fff;
+    padding:20px 15px;
 }
 
 .container{
     max-width:600px;
-    margin:30px auto;
+    margin:20px auto;
     background:#1a1a1a;
     padding:25px;
     border-radius:18px;
@@ -29,7 +28,6 @@ body{
 h1{
     text-align:center;
     color:#ff4d4d;
-    margin-bottom:25px;
 }
 
 label{
@@ -44,13 +42,11 @@ input,textarea{
     border-radius:10px;
     border:1px solid #444;
     background:#111;
-    color:white;
-    font-size:15px;
+    color:#fff;
 }
 
 textarea{
     min-height:120px;
-    resize:vertical;
 }
 
 button{
@@ -65,13 +61,9 @@ button{
     font-weight:bold;
 }
 
-.preview{
-    width:100%;
-    max-height:300px;
-    object-fit:cover;
-    margin-top:15px;
-    border-radius:12px;
-    display:none;
+#message{
+    text-align:center;
+    margin-top:20px;
 }
 
 .back{
@@ -79,7 +71,6 @@ button{
     text-align:center;
     margin-top:20px;
     color:#aaa;
-    text-decoration:none;
 }
 </style>
 </head>
@@ -94,62 +85,181 @@ button{
 <input type="text" id="songTitle" placeholder="जस्तै: Dil Mera">
 
 <label>गीतको विवरण</label>
-<input type="text" id="songDescription" placeholder="जस्तै: Emotional Hindi Song">
+<input type="text" id="songDescription"
+placeholder="जस्तै: Emotional Hindi Song">
 
 <label>Cover / Thumbnail</label>
 <input type="file" id="cover" accept="image/*">
-
-<img id="preview" class="preview">
 
 <label>MP3 गीत</label>
 <input type="file" id="audio" accept="audio/*">
 
 <label>Lyrics</label>
-<textarea id="lyrics" placeholder="यहाँ गीतका शब्दहरू राख्नुहोस्..."></textarea>
+<textarea id="lyrics"
+placeholder="यहाँ गीतका शब्दहरू राख्नुहोस्..."></textarea>
 
-<button onclick="demoUpload()">Upload Song</button>
+<button onclick="uploadSong()">Upload Song</button>
 
-<p id="message" style="text-align:center;margin-top:20px;"></p>
+<div id="message"></div>
 
-<a class="back" href="index.html">← मुख्य वेबसाइटमा फर्कनुहोस्</a>
+<a class="back" href="index.html">
+← मुख्य वेबसाइटमा फर्कनुहोस्
+</a>
 
 </div>
 
 <script>
 
-const coverInput = document.getElementById("cover");
-const preview = document.getElementById("preview");
+/* Supabase connection */
+const SUPABASE_URL =
+"https://kawzjxupkmakdndsgycn.supabase.co";
 
-coverInput.addEventListener("change", function(){
+const SUPABASE_KEY =
+sb_publishable_9XP5jAQrpwCrbT-JDe7NyQ_gr6LmwZ1;
 
-    const file = this.files[0];
 
-    if(file){
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = "block";
-    }
+async function uploadSong(){
 
-});
+    const title =
+    document.getElementById("songTitle").value.trim();
 
-function demoUpload(){
+    const description =
+    document.getElementById("songDescription").value.trim();
 
-    const title = document.getElementById("songTitle").value;
-    const cover = document.getElementById("cover").files[0];
-    const audio = document.getElementById("audio").files[0];
+    const cover =
+    document.getElementById("cover").files[0];
+
+    const audio =
+    document.getElementById("audio").files[0];
+
+    const lyrics =
+    document.getElementById("lyrics").value;
+
+    const message =
+    document.getElementById("message");
+
 
     if(!title || !cover || !audio){
 
-        document.getElementById("message").innerText =
+        message.innerText =
         "कृपया गीतको नाम, Cover Photo र MP3 छान्नुहोस्।";
 
         return;
     }
 
-    document.getElementById("message").innerText =
-    "✅ Demo सफल भयो! अब Supabase जोडेर वास्तविक Upload चलाउन सकिन्छ।";
+
+    message.innerText =
+    "⏳ Upload हुँदैछ...";
+
+
+    try{
+
+        const safeTitle =
+        title.toLowerCase()
+        .replace(/[^a-z0-9]+/g,"-")
+        .replace(/^-|-$/g,"");
+
+
+        const time = Date.now();
+
+
+        /* Cover upload */
+
+        const coverName =
+        "covers/" + safeTitle + "-" + time + ".jpg";
+
+
+        const coverResponse =
+        await fetch(
+        SUPABASE_URL +
+        "/storage/v1/object/music-files/" +
+        coverName,
+        {
+            method:"POST",
+
+            headers:{
+                "Authorization":
+                "Bearer " + SUPABASE_KEY,
+
+                "apikey":
+                SUPABASE_KEY,
+
+                "Content-Type":
+                cover.type
+            },
+
+            body:cover
+        });
+
+
+        if(!coverResponse.ok){
+
+            throw new Error(
+            "Cover upload failed"
+            );
+        }
+
+
+        /* MP3 upload */
+
+        const audioName =
+        "songs/" + safeTitle + "-" + time + ".mp3";
+
+
+        const audioResponse =
+        await fetch(
+        SUPABASE_URL +
+        "/storage/v1/object/music-files/" +
+        audioName,
+        {
+            method:"POST",
+
+            headers:{
+                "Authorization":
+                "Bearer " + SUPABASE_KEY,
+
+                "apikey":
+                SUPABASE_KEY,
+
+                "Content-Type":
+                audio.type
+            },
+
+            body:audio
+        });
+
+
+        if(!audioResponse.ok){
+
+            throw new Error(
+            "Audio upload failed"
+            );
+        }
+
+
+        message.innerText =
+        "✅ गीत सफलतापूर्वक Upload भयो!";
+
+
+        console.log({
+            title,
+            description,
+            lyrics,
+            coverName,
+            audioName
+        });
+
+
+    }catch(error){
+
+        console.error(error);
+
+        message.innerText =
+        "❌ Upload हुन सकेन। Policy वा key जाँच गर्नुहोस्।";
+    }
+
 }
-const SUPABASE_URL = "https://kawzjxupkmakdndsgycn.supabase.co";
-const SUPABASE_KEY = sb_publishable_9XP5jAQrpwCrbT-JDe7NyQ_gr6LmwZ1
+
 </script>
 
 </body>
