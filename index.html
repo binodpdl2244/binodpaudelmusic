@@ -4,545 +4,490 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Binodpaudel Music</title>
-
-<meta name="description"
-content="Binodpaudel Music - Songs, Music and Lyrics">
+<title>Binodpaudel Music | Binod Prasad Paudel | Nepali & Hindi Songs</title>
+<meta name="description" content="Binodpaudel Music - Binod Prasad Paudel, a lyricist from Pokhara, Nepal. Listen to original Nepali and Hindi songs, music and lyrics.">
+<meta name="keywords" content="Binodpaudel Music, Binod Paudel, Binod Prasad Paudel, Nepali Songs, Hindi Songs, Nepali Lyricist, Pokhara Lyricist, Nepali Music">
+<meta name="author" content="Binod Prasad Paudel">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="uX1rZs10F-nNwXpag_wMQd9uf-8kULJdYS6YC8Mj9IQ">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-  box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  margin:0;
-  background:#0b0b0b;
-  color:white;
-  font-family:Arial,sans-serif;
+  font-family:'Poppins',sans-serif;
+  background:#0c0c0c;
+  color:#fff;
+  line-height:1.6;
 }
+nav{
+  background:rgba(12,12,12,.96);
+  backdrop-filter:blur(12px);
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #222;
+}
+.logo{font-size:1.3rem;font-weight:700;color:#ff4d4d}
+.nav-links{display:flex;gap:18px}
+.nav-links a{color:#ccc;text-decoration:none;font-size:.9rem}
+.nav-links a:hover{color:#ff4d4d}
 
-header{
-  padding:25px 15px;
+.hero{
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.85)),
+    url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1400') center/cover;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
   text-align:center;
-  background:#111;
-  border-bottom:1px solid #333;
+  padding:80px 20px 20px;
+}
+.hero-img{
+  width:150px;height:150px;border-radius:50%;
+  object-fit:cover;border:4px solid #ff4d4d;
+  margin-bottom:20px;
+  box-shadow:0 0 30px rgba(255,77,77,.45);
+}
+.hero h1{
+  font-size:2.5rem;margin-bottom:6px;
+  background:linear-gradient(90deg,#ff4d4d,#ff9966);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero .title{font-size:1.25rem;color:#ff4d4d;margin-bottom:6px;font-weight:500}
+.hero p{color:#ddd;margin-bottom:25px}
+.btn{
+  display:inline-block;background:#ff4d4d;color:#fff;
+  padding:12px 30px;border-radius:30px;text-decoration:none
+}
+.btn:hover{background:#ff3333}
+
+section{padding:70px 20px;max-width:1100px;margin:0 auto}
+h2{font-size:1.8rem;text-align:center;margin-bottom:30px}
+h2:after{
+  content:'';width:60px;height:3px;background:#ff4d4d;
+  display:block;margin:10px auto 0
 }
 
-header h1{
-  margin:0;
-  font-size:30px;
+.about-container{
+  display:flex;flex-wrap:wrap;gap:30px;
+  align-items:center;justify-content:center
+}
+.about-photo{
+  width:230px;border-radius:16px;border:3px solid #333;
+  box-shadow:0 10px 30px rgba(0,0,0,.5)
+}
+.about-text{
+  flex:1;min-width:280px;background:#1a1a1a;
+  padding:28px;border-radius:16px;border:1px solid #333;
+  font-size:1.05rem
 }
 
-header p{
-  color:#aaa;
-  margin:8px 0 0;
+.platforms{
+  display:flex;flex-wrap:wrap;gap:12px;
+  justify-content:center;margin-top:10px
 }
-
-.container{
-  width:94%;
-  max-width:900px;
-  margin:25px auto;
+.platform-btn{
+  background:#1a1a1a;border:1px solid #333;color:#fff;
+  padding:10px 18px;border-radius:30px;text-decoration:none;font-size:.9rem
 }
+.platform-btn:hover{border-color:#ff4d4d;background:#222}
 
 .upload-box{
-  background:#151515;
-  padding:20px;
-  border-radius:15px;
-  margin-bottom:30px;
+  background:#151515;border:1px solid #333;
+  padding:22px;border-radius:16px;margin:0 auto 40px;
+  max-width:800px
 }
-
-.upload-box h2{
-  margin-top:0;
+.upload-box h2{margin-bottom:22px}
+.field-label{display:block;color:#ddd;margin:8px 0 6px}
+input[type=text],textarea,input[type=file]{
+  width:100%;margin:0 0 16px;padding:13px;
+  border-radius:8px;border:1px solid #444;
+  background:#222;color:#fff;font-size:16px
 }
-
-input,textarea{
-  width:100%;
-  margin:8px 0 15px;
-  padding:13px;
-  border-radius:8px;
-  border:1px solid #444;
-  background:#222;
-  color:white;
-  font-size:16px;
+textarea{min-height:150px;resize:vertical}
+input[type=file]{padding:10px}
+.upload-btn{
+  width:100%;padding:14px;border:0;border-radius:8px;
+  background:#16a34a;color:#fff;font-size:17px;font-weight:700;
+  cursor:pointer
 }
+.upload-btn:disabled{opacity:.6}
+#message{text-align:center;margin-top:14px;font-weight:600}
 
-textarea{
-  min-height:150px;
-  resize:vertical;
+.songs-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px
 }
-
-button{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:8px;
-  background:#16a34a;
-  color:white;
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
+.song-card{
+  background:#1a1a1a;border-radius:14px;padding:15px;
+  border:1px solid #333;overflow:hidden
 }
-
-button:disabled{
-  opacity:.6;
+.song-thumbnail{
+  width:100%;aspect-ratio:16/9;object-fit:cover;
+  border-radius:10px;margin-bottom:14px;background:#111;display:block
 }
-
-#message{
-  margin-top:15px;
-  text-align:center;
-  font-weight:bold;
+.song-card h3{color:#ff4d4d;margin-bottom:6px;font-size:1.1rem}
+.song-card p{color:#aaa;font-size:.88rem;margin-bottom:14px}
+.song-card a{
+  display:inline-block;background:#ff4d4d;color:#fff;
+  padding:7px 16px;border-radius:20px;text-decoration:none;font-size:.85rem
 }
-
-.song{
-  background:#151515;
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:25px;
-}
-
-.cover{
-  width:100%;
-  max-height:500px;
-  object-fit:cover;
-  border-radius:12px;
-  display:block;
-}
-
-.song h2{
-  margin-bottom:8px;
-}
-
-audio{
-  width:100%;
-  margin:12px 0;
-}
-
+.audio-player{width:100%;margin:4px 0 14px}
 .lyrics{
-  white-space:pre-wrap;
-  line-height:1.8;
-  color:#ddd;
-  background:#101010;
-  padding:15px;
-  border-radius:10px;
+  white-space:pre-wrap;background:#101010;color:#ddd;
+  padding:14px;border-radius:10px;margin:8px 0 14px;
+  line-height:1.8
+}
+.loading{text-align:center;color:#aaa;padding:25px}
+.error{text-align:center;color:#ff7777;padding:25px}
+.small-note{text-align:center;color:#888;font-size:.82rem;margin-top:8px}
+
+footer{
+  background:#080808;text-align:center;padding:30px 20px;
+  border-top:1px solid #222;color:#777;font-size:.9rem
 }
 
-.loading{
-  text-align:center;
-  color:#aaa;
-  padding:20px;
+@media(max-width:600px){
+  .nav-links{gap:10px}
+  .nav-links a{font-size:.75rem}
+  .hero h1{font-size:2rem}
+  .about-photo{width:180px}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Binodpaudel Music</h1>
-  <p>My Songs • Music • Lyrics</p>
-</header>
+<nav>
+  <div class="logo">Binodpaudel Music</div>
+  <div class="nav-links">
+    <a href="#home">होम</a>
+    <a href="#about">परिचय</a>
+    <a href="#songs">गीतहरू</a>
+    <a href="#platforms">प्लेटफर्म</a>
+  </div>
+</nav>
 
-<div class="container">
+<section class="hero" id="home">
+  <img src="IMG_20260727_134322.jpg"
+       alt="Binod Prasad Paudel - Binodpaudel Music"
+       class="hero-img">
+  <h1>Binod Prasad Paudel</h1>
+  <div class="title">Lyricist • Binodpaudel Music</div>
+  <p>Pokhara, Nepal</p>
+  <a href="#songs" class="btn">गीतहरू सुन्नुहोस्</a>
+</section>
 
+<section id="about">
+  <h2>मेरो परिचय</h2>
+  <div class="about-container">
+    <img src="grok_1785137606830.jpg"
+         alt="Binod Prasad Paudel Lyricist"
+         class="about-photo">
+    <div class="about-text">
+      नमस्कार! म <strong>बिनोद प्रसाद पौडेल</strong> हुँ।
+      मेरो बसाइँ <strong>पोखरा, नेपाल</strong> हो।
+      <br><br>
+      म विशेष गरी <strong>नेपाली तथा हिन्दी गीतहरूको शब्द रचना</strong> गर्छु।
+      गीत-संगीत मेरो गहिरो रुचि हो।
+      <br><br>
+      मेरा रचना गरेका गीतहरू विश्वका विभिन्न म्युजिक प्लेटफर्महरूमा लाइभ छन्।
+      तपाईंहरूको माया नै मेरो प्रेरणा हो।
+    </div>
+  </div>
+</section>
+
+<section id="platforms">
+  <h2>सुन्न मिल्ने प्लेटफर्महरू</h2>
+  <div class="platforms">
+    <a href="https://open.spotify.com/artist/5BArLMgdN8S8..." class="platform-btn" target="_blank">Spotify</a>
+    <a href="https://music.apple.com/us/artist/binod-prasad-paudel" class="platform-btn" target="_blank">Apple Music</a>
+    <a href="https://music.youtube.com/@binodpaudelmusic" class="platform-btn" target="_blank">YouTube Music</a>
+    <a href="https://soundcloud.com/binod-paudel-935015872" class="platform-btn" target="_blank">SoundCloud</a>
+    <a href="https://www.deezer.com/artist/395960661" class="platform-btn" target="_blank">Deezer</a>
+    <a href="https://www.youtube.com/@Binodpaudelmusic" class="platform-btn" target="_blank">YouTube</a>
+    <a href="https://www.instagram.com/binodpaudelmusic" class="platform-btn" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@binodprasadpaudelmusic" class="platform-btn" target="_blank">TikTok</a>
+  </div>
+</section>
+
+<section id="upload">
   <div class="upload-box">
+    <h2>🎵 नयाँ गीत थप्नुहोस्</h2>
 
-    <h2>🎵 Add New Song</h2>
+    <label class="field-label">गीतको नाम</label>
+    <input type="text" id="songTitle" placeholder="गीतको नाम">
 
-    <input
-      type="text"
-      id="songTitle"
-      placeholder="गीतको नाम"
-    >
+    <label class="field-label">गीतको Lyrics</label>
+    <textarea id="lyrics" placeholder="गीतको Lyrics यहाँ लेख्नुहोस्"></textarea>
 
-    <textarea
-      id="lyrics"
-      placeholder="गीतको Lyrics यहाँ लेख्नुहोस्"
-    ></textarea>
+    <label class="field-label">🖼️ Cover Photo</label>
+    <input type="file" id="cover" accept="image/*">
 
-    <label>🖼️ Cover Photo</label>
-    <input
-      type="file"
-      id="cover"
-      accept="image/*"
-    >
+    <label class="field-label">🎧 MP3 Song</label>
+    <input type="file" id="audio" accept="audio/*">
 
-    <label>🎧 MP3 Song</label>
-    <input
-      type="file"
-      id="audio"
-      accept="audio/*"
-    >
-
-    <button id="uploadBtn" onclick="uploadSong()">
-      Upload Song
-    </button>
-
+    <button class="upload-btn" id="uploadBtn" onclick="uploadSong()">Upload Song</button>
     <div id="message"></div>
+    <div class="small-note">गीत Upload भएपछि यही वेबसाइटको गीत सूचीमा तुरुन्त देखिन्छ।</div>
+  </div>
+</section>
 
+<section id="songs">
+  <h2>मेरा गीतहरू</h2>
+
+  <h3 id="uploadedHeading" style="text-align:center;color:#ff4d4d;margin-bottom:18px;display:none">
+    नयाँ अपलोड भएका गीतहरू
+  </h3>
+  <div id="uploadedSongs" class="songs-grid">
+    <div class="loading">⏳ गीतहरू loading हुँदैछन्...</div>
   </div>
 
-  <h2>🎶 My Songs</h2>
+  <h3 style="text-align:center;color:#ff4d4d;margin:45px 0 18px">
+    प्रकाशित गीतहरू
+  </h3>
+  <div id="staticSongs" class="songs-grid"></div>
+</section>
 
-  <div id="songs">
-    <div class="loading">गीतहरू Loading हुँदैछन्...</div>
-  </div>
-
-</div>
+<footer>
+  <p>© 2026 Binod Prasad Paudel • Binodpaudel Music</p>
+  <p style="margin-top:8px">Pokhara, Nepal • All Rights Reserved</p>
+</footer>
 
 <script>
+const SUPABASE_URL = "https://kawzjxupkmakdndsgycn.supabase.co";
+const SUPABASE_KEY = "sb_publishable_9XP5jAQrpwCrbT-JDe7NyQ_gr6LmwZ1";
 
-/* ================================
-   SUPABASE CONNECTION
-================================ */
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const SUPABASE_URL =
-"https://kawzjxupkmakdndsgycn.supabase.co";
+const staticSongs = [
+  ["दाग","Heart Touching Nepali Sad Song • 2026","images/dag.jpg"],
+  ["यो जिन्दगी","Heart Touching Nepali Sad Song • 2026","images/yo-jindagi.jpg"],
+  ["Timi Nai Hau","Love Song","images/timi-nai-hau.jpg"],
+  ["किन बोल्दैनौ तिमी?","गीति गजल • Nepali Geeti Ghazal","images/kin-boldainau-jpg"],
+  ["JUNELI RAAT","Emotional Heart Touching Song","images/juneli-raat.jpg"],
+  ["चाहना","Heart-touching Nepali Love Song","images/chahana.jpg"],
+  ["सपना बिक्रिमा छ","मुटु छुने भावनात्मक नेपाली गीत","images/sapana-bikrimacha.jpg"],
+  ["हरि नाम जपौ","New Nepali Bhajan • 2026","images/hari-naam-japau.jpg"],
+  ["मुस्कान","Heart Touching Hindi Song • 2026","images/muskaan.jpg"],
+  ["O Sanam","Emotional Heart Touching Song","images/o-sanam.jpg"],
+  ["आकाश खसेको देखे","Emotional Heart Touching Song","images/aakash-khaseko.jpg"],
+  ["यो जिन्दगी २","Emotional Heart Touching Song","images/yo-jindagi-2.jpg"]
+];
 
-const SUPABASE_KEY =
-"sb_publishable_9XP5jAQrpwCrbT-JDe7NyQ_gr6LmwZ1";
+function escapeHtml(text){
+  const div = document.createElement("div");
+  div.textContent = text ?? "";
+  return div.innerHTML;
+}
 
-const supabaseClient =
-supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+function makeStaticCards(uploadedTitles){
+  const box = document.getElementById("staticSongs");
+  box.innerHTML = "";
 
+  staticSongs.forEach(song => {
+    if(uploadedTitles.has(song[0].trim().toLowerCase())) return;
 
-/* ================================
-   UPLOAD SONG
-================================ */
+    const card = document.createElement("div");
+    card.className = "song-card";
+    card.innerHTML = `
+      <img src="${song[2]}" alt="${escapeHtml(song[0])}" class="song-thumbnail"
+           onerror="this.style.display='none'">
+      <h3>${escapeHtml(song[0])}</h3>
+      <p>${escapeHtml(song[1])}</p>
+      <a href="https://www.youtube.com/@Binodpaudelmusic" target="_blank">
+        YouTube मा सुन्नुहोस्
+      </a>
+    `;
+    box.appendChild(card);
+  });
+}
 
-async function uploadSong(){
-
-  const button =
-    document.getElementById("uploadBtn");
-
-  const message =
-    document.getElementById("message");
-
-  const title =
-    document.getElementById("songTitle").value.trim();
-
-  const lyrics =
-    document.getElementById("lyrics").value.trim();
-
-  const coverFile =
-    document.getElementById("cover").files[0];
-
-  const audioFile =
-    document.getElementById("audio").files[0];
-
-
-  if(!title){
-    message.innerText =
-      "❌ गीतको नाम राख्नुहोस्।";
-    return;
-  }
-
-  if(!coverFile){
-    message.innerText =
-      "❌ Cover Photo छान्नुहोस्।";
-    return;
-  }
-
-  if(!audioFile){
-    message.innerText =
-      "❌ MP3 Song छान्नुहोस्।";
-    return;
-  }
-
-
-  button.disabled = true;
-
-  message.innerText =
-    "⏳ गीत Upload हुँदैछ...";
-
+async function loadSongs(){
+  const box = document.getElementById("uploadedSongs");
+  const heading = document.getElementById("uploadedHeading");
 
   try{
-
-    const safeName =
-      title
-      .replace(/[^a-zA-Z0-9\u0900-\u097F]+/g,"-")
-      .toLowerCase();
-
-    const unique =
-      Date.now();
-
-
-    /* ================================
-       COVER UPLOAD
-    ================================= */
-
-    const coverPath =
-      "covers/" +
-      unique +
-      "-" +
-      safeName +
-      "." +
-      getExtension(coverFile.name);
-
-
-    const coverUpload =
-      await supabaseClient
-      .storage
-      .from("music-files")
-      .upload(
-        coverPath,
-        coverFile,
-        {
-          cacheControl:"3600",
-          upsert:false
-        }
-      );
-
-
-    if(coverUpload.error){
-      throw coverUpload.error;
-    }
-
-
-    /* ================================
-       AUDIO UPLOAD
-    ================================= */
-
-    const audioPath =
-      "songs/" +
-      unique +
-      "-" +
-      safeName +
-      "." +
-      getExtension(audioFile.name);
-
-
-    const audioUpload =
-      await supabaseClient
-      .storage
-      .from("music-files")
-      .upload(
-        audioPath,
-        audioFile,
-        {
-          cacheControl:"3600",
-          upsert:false
-        }
-      );
-
-
-    if(audioUpload.error){
-      throw audioUpload.error;
-    }
-
-
-    /* ================================
-       PUBLIC URLS
-    ================================= */
-
-    const coverUrl =
-      supabaseClient
-      .storage
-      .from("music-files")
-      .getPublicUrl(coverPath)
-      .data
-      .publicUrl;
-
-
-    const audioUrl =
-      supabaseClient
-      .storage
-      .from("music-files")
-      .getPublicUrl(audioPath)
-      .data
-      .publicUrl;
-
-
-    /* ================================
-       DATABASE
-    ================================= */
-
-    const { error:dbError } =
-      await supabaseClient
+    const { data, error } = await supabaseClient
       .from("songs")
-      .insert({
-        title:title,
-        lyrics:lyrics,
-        cover_url:coverUrl,
-        audio_url:audioUrl
+      .select("id,title,lyrics,cover_url,audio_url")
+      .order("id", { ascending:false });
+
+    if(error) throw error;
+
+    const uploadedTitles = new Set(
+      (data || []).map(s => (s.title || "").trim().toLowerCase())
+    );
+
+    makeStaticCards(uploadedTitles);
+
+    if(!data || data.length === 0){
+      heading.style.display = "none";
+      box.innerHTML = "<div class='loading'>अहिले नयाँ Upload गरिएको गीत छैन।</div>";
+      return;
+    }
+
+    heading.style.display = "block";
+    box.innerHTML = "";
+
+    data.forEach(song => {
+      const card = document.createElement("div");
+      card.className = "song-card";
+
+      const title = escapeHtml(song.title || "Untitled");
+      const lyrics = escapeHtml(song.lyrics || "");
+
+      card.innerHTML = `
+        ${song.cover_url ? `
+          <img src="${song.cover_url}" alt="${title}" class="song-thumbnail"
+               onerror="this.style.display='none'">
+        ` : ""}
+
+        <h3>${title}</h3>
+        <p>Binodpaudel Music</p>
+
+        ${song.audio_url ? `
+          <audio class="audio-player" controls preload="none" src="${song.audio_url}"></audio>
+        ` : ""}
+
+        ${song.lyrics ? `
+          <div class="lyrics">${lyrics}</div>
+        ` : ""}
+
+        <a href="https://www.youtube.com/@Binodpaudelmusic" target="_blank">
+          YouTube मा सुन्नुहोस्
+        </a>
+      `;
+
+      box.appendChild(card);
+    });
+
+  }catch(error){
+    console.error(error);
+    heading.style.display = "none";
+    box.innerHTML =
+      "<div class='error'>गीतहरू load हुन सकेन। Supabase को songs table permission जाँच गर्नुहोस्।</div>";
+    makeStaticCards(new Set());
+  }
+}
+
+function getExtension(filename){
+  const parts = filename.split(".");
+  return parts.length > 1 ? parts.pop().toLowerCase() : "bin";
+}
+
+function makeSafeName(title){
+  return "song-" + Date.now();
+}
+
+async function uploadSong(){
+  const button = document.getElementById("uploadBtn");
+  const message = document.getElementById("message");
+
+  const title = document.getElementById("songTitle").value.trim();
+  const lyrics = document.getElementById("lyrics").value.trim();
+  const coverFile = document.getElementById("cover").files[0];
+  const audioFile = document.getElementById("audio").files[0];
+
+  if(!title){
+    message.innerText = "❌ गीतको नाम राख्नुहोस्।";
+    return;
+  }
+  if(!coverFile){
+    message.innerText = "❌ Cover Photo छान्नुहोस्।";
+    return;
+  }
+  if(!audioFile){
+    message.innerText = "❌ MP3 Song छान्नुहोस्।";
+    return;
+  }
+
+  button.disabled = true;
+  message.innerText = "⏳ गीत Upload हुँदैछ...";
+
+  const unique = Date.now();
+
+  try{
+    const coverPath =
+      "covers/" + unique + "-cover." + getExtension(coverFile.name);
+
+    const { error: coverError } = await supabaseClient
+      .storage
+      .from("music-files")
+      .upload(coverPath, coverFile, {
+        cacheControl:"3600",
+        upsert:false
       });
 
+    if(coverError) throw coverError;
 
-    if(dbError){
-      throw dbError;
-    }
+    const audioPath =
+      "songs/" + unique + "-audio." + getExtension(audioFile.name);
 
+    const { error: audioError } = await supabaseClient
+      .storage
+      .from("music-files")
+      .upload(audioPath, audioFile, {
+        cacheControl:"3600",
+        upsert:false
+      });
 
-    message.innerText =
-      "✅ गीत सफलतापूर्वक Upload भयो!";
+    if(audioError) throw audioError;
 
+    const coverUrl = supabaseClient
+      .storage
+      .from("music-files")
+      .getPublicUrl(coverPath).data.publicUrl;
+
+    const audioUrl = supabaseClient
+      .storage
+      .from("music-files")
+      .getPublicUrl(audioPath).data.publicUrl;
+
+    const { error: dbError } = await supabaseClient
+      .from("songs")
+      .insert({
+        title: title,
+        lyrics: lyrics,
+        cover_url: coverUrl,
+        audio_url: audioUrl
+      });
+
+    if(dbError) throw dbError;
+
+    message.innerText = "✅ गीत, Cover र Lyrics सफलतापूर्वक Upload भयो!";
 
     document.getElementById("songTitle").value = "";
     document.getElementById("lyrics").value = "";
     document.getElementById("cover").value = "";
     document.getElementById("audio").value = "";
 
-
     await loadSongs();
 
+    document.getElementById("songs").scrollIntoView({behavior:"smooth"});
+
   }catch(error){
-
     console.error(error);
-
     message.innerText =
-      "❌ Upload हुन सकेन: " +
-      error.message;
-
+      "❌ Upload हुन सकेन: " + (error.message || "Unknown error");
+  }finally{
+    button.disabled = false;
   }
-
-
-  button.disabled = false;
 }
 
-
-/* ================================
-   LOAD SONGS
-================================ */
-
-async function loadSongs(){
-
-  const songsBox =
-    document.getElementById("songs");
-
-  songsBox.innerHTML =
-    '<div class="loading">गीतहरू Loading हुँदैछन्...</div>';
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-    .from("songs")
-    .select("*")
-    .order("id",{ascending:false});
-
-
-  if(error){
-
-    songsBox.innerHTML =
-      "<p>❌ गीतहरू Loading हुन सकेन।</p>";
-
-    console.error(error);
-
-    return;
-  }
-
-
-  if(!data || data.length === 0){
-
-    songsBox.innerHTML =
-      "<p>अहिले कुनै गीत छैन।</p>";
-
-    return;
-  }
-
-
-  songsBox.innerHTML = "";
-
-
-  data.forEach(song => {
-
-    const div =
-      document.createElement("div");
-
-    div.className = "song";
-
-
-    const title =
-      escapeHtml(song.title || "Untitled");
-
-    const lyrics =
-      escapeHtml(song.lyrics || "");
-
-
-    div.innerHTML = `
-
-      ${
-        song.cover_url
-        ?
-        `<img
-          class="cover"
-          src="${song.cover_url}"
-          alt="${title}"
-          loading="lazy"
-        >`
-        :
-        ""
-      }
-
-      <h2>🎵 ${title}</h2>
-
-      ${
-        song.audio_url
-        ?
-        `<audio
-          controls
-          preload="none"
-          src="${song.audio_url}">
-        </audio>`
-        :
-        ""
-      }
-
-      ${
-        song.lyrics
-        ?
-        `<div class="lyrics">${lyrics}</div>`
-        :
-        ""
-      }
-
-    `;
-
-
-    songsBox.appendChild(div);
-
-  });
-
-}
-
-
-/* ================================
-   HELPERS
-================================ */
-
-function getExtension(filename){
-
-  const parts =
-    filename.split(".");
-
-  return parts.length > 1
-    ? parts.pop()
-    : "bin";
-}
-
-
-function escapeHtml(text){
-
-  const div =
-    document.createElement("div");
-
-  div.textContent = text;
-
-  return div.innerHTML;
-}
-
-
-/* ================================
-   START
-================================ */
-
+makeStaticCards(new Set());
 loadSongs();
-
 </script>
 
 </body>
