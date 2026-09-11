@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Binodpaudel Music - Admin</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+body{
+  font-family:Arial,sans-serif;
+  background:#111;color:white;
+  padding:20px;max-width:600px;margin:auto
+}
+h1{color:#ff4d4d}
+input,button{
+  width:100%;padding:14px;margin:8px 0;
+  box-sizing:border-box;border-radius:8px;
+  border:1px solid #444
+}
+button{background:#ff4d4d;color:white;border:0;font-weight:bold}
+#admin{display:none}
+</style>
+</head>
+
+<body>
+
+<h1>🎵 Binodpaudel Music</h1>
+<h3>Admin / Upload Panel</h3>
+
+<div id="login">
+  <input id="email" type="email" placeholder="Admin Email">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <p id="msg"></p>
+</div>
+
+<div id="admin">
+
+  <h3>गीत Upload गर्नुहोस्</h3>
+
+  <input id="songName" placeholder="गीतको नाम">
+
+  <label>🎵 Audio File</label>
+  <input id="audio" type="file" accept="audio/*">
+
+  <label>🖼️ Thumbnail</label>
+  <input id="thumb" type="file" accept="image/*">
+
+  <button onclick="uploadSong()">Upload Song</button>
+
+  <p id="status"></p>
+
+  <button onclick="logout()">Logout</button>
+
+</div>
+
+<script>
+
+const SUPABASE_URL =
+"https://kawzjxupkmakdndsgycn.supabase.co";
+
+const SUPABASE_KEY =
+;sb"_publishable_9XP5jAQrpwCrbT-JDe7NyQ_gr6LmwZ1"
+
+const supabase =
+window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+
+async function login(){
+
+ const email=document.getElementById("email").value;
+ const password=document.getElementById("password").value;
+
+ const {error}=await supabase.auth.signInWithPassword({
+   email,password
+ });
+
+ if(error){
+   document.getElementById("msg").innerText=error.message;
+ }else{
+   showAdmin();
+ }
+}
+
+
+async function showAdmin(){
+
+ const {data:{session}}=await supabase.auth.getSession();
+
+ if(session){
+   document.getElementById("login").style.display="none";
+   document.getElementById("admin").style.display="block";
+ }
+}
+
+
+async function uploadSong(){
+
+ const name=document.getElementById("songName").value;
+ const audio=document.getElementById("audio").files[0];
+ const thumb=document.getElementById("thumb").files[0];
+
+ if(!name || !audio || !thumb){
+   alert("गीतको नाम, Audio र Thumbnail सबै छान्नुहोस्।");
+   return;
+ }
+
+ document.getElementById("status").innerText="Upload हुँदैछ...";
+
+ const time=Date.now();
+
+ const audioPath="audio/"+time+"-"+audio.name;
+ const thumbPath="thumb/"+time+"-"+thumb.name;
+
+ const a=await supabase.storage
+   .from("music-file")
+   .upload(audioPath,audio);
+
+ if(a.error){
+   document.getElementById("status").innerText=a.error.message;
+   return;
+ }
+
+ const t=await supabase.storage
+   .from("music-file")
+   .upload(thumbPath,thumb);
+
+ if(t.error){
+   document.getElementById("status").innerText=t.error.message;
+   return;
+ }
+
+ document.getElementById("status").innerText=
+ "✅ गीत र Thumbnail सफलतापूर्वक Upload भयो।";
+}
+
+
+async function logout(){
+ await supabase.auth.signOut();
+ location.reload();
+}
+
+showAdmin();
+
+</script>
+
+</body>
+</html>
